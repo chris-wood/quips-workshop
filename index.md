@@ -1,6 +1,6 @@
 ---
 layout: front
-title: QUIC Privacy and Security Workshop
+title: QUIPS
 ---
 
 # QUIC Privacy and Security Workshop
