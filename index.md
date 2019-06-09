@@ -1,9 +1,9 @@
 ---
 layout: front
-title: QUIPS Workshop
+title: QUIC Privacy and Security Workshop
 ---
 
-## QUIPS
+# QUIC Privacy and Security Workshop
 
 QUIPS is a workshop focusing on QUIC security and privacy analysis efforts. Its goal is to bring this formal analysis results to the IETF working group and developer communities in order to build confidence in and improve QUIC before its widespread deployment.
 
