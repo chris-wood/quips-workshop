@@ -5,7 +5,7 @@ title: QUIPS
 
 # QUIC Privacy and Security Workshop
 
-QUIPS is a workshop focusing on QUIC security and privacy analysis efforts. Its goal is to bring this formal analysis results to the IETF working group and developer communities in order to build confidence in and improve QUIC before its widespread deployment.
+QUIPS is a workshop focusing on QUIC security and privacy analysis efforts. Its goal is to bring formal analysis results to the IETF working group and developer communities in order to build confidence in and improve QUIC before its widespread deployment.
 
 ## Background
 
@@ -13,10 +13,11 @@ The IETF QUIC protocol is a modern UDP-based, stream-multiplexing, encrypted tra
 
 The delta between TLS 1.3 (over TCP) and QUIC as secure transport protocols is non-negligible. In particular, there are several facets of the design that warrant further analysis, including, though not limited to the following:
 
-1. Integration with cryptographic handshake. Designed with TLS 1.3 [RFC8446] as the authenticated key exchange protocol (AKE), QUIC uses state-of-the-art cryptography for establishing and using shared session secrets for packet encryption. Consequently, QUIC also benefits from extensive security analysis efforts that helped standardize TLS 1.3. However, QUIC’s modular design and the integration of TLS 1.3 in particular, has not yet received formal analysis.
-2. Packet protection. Analysis of TLS assumed ordered delivery, whereas QUIC does not enjoy that benefit. The effect of packet loss on QUIC’s record layer security is important and not well understood. Moreover, QUIC's record layer provides features that TLS does not, such as header protection. Capturing the semantics of this new packet protection algorithm and proving them correct is critical.
-3. Denial of Service (DoS) features. QUIC has a number of features designed to reduce the effects of DoS, both on individual connections, such as duplicate packet detection and complete packet protection, server resources, such as Retry, and the resources of bystanders, such as anti-reflection. It has yet to be shown whether or not these techniques achieve their desired goals.
-4. Privacy. Many of QUIC’s features account for and attempt mitigation of packet linkability across network paths and between different connections. For example, voluntary connection migration requires endpoints to use new connection identifiers if possible as a way of preventing cross-path linkability. Also, as a means of improving endpoint privacy postures, among others, QUIC does not mandate endpoints provide any way for networks to measure per-connection Round Trip Time (RTT). The optional spin bit is the only signal made willingly available to the network. Currently, there is no strong analysis supporting the concrete privacy benefits these features provide to QUIC endpoints.
+1. *Integration with the TLS 1.3 handshake.*: QUIC is designed to re-use the TLS 1.3 [RFC8446] authenticated key exchange protocol that produces the traffic secrets used to encrypt QUIC packets. While the TLS 1.3 key exchange protocol has received extensive formal analysis effort during its standardization, QUIC’s modular use of the TLS handshake to generate secrets and authenticate negotiated transport parameters has not received as much attention. Some of the properties of TLS 1.3, such as the authentication by the handshake of the termination of 0-RTT data by the "end of early data" message, rely on assumptions that hold for the TLS record layer, but not for the QUIC record layer.
+2. *Packet protection*: analysis of TLS assume reliable, ordered delivery of network messages, which does not hold in QUIC. The effect of packet loss on QUIC’s record layer security is important and not well understood. Moreover, QUIC's record layer provides features that TLS does not, such as header protection. Capturing the semantics of this new packet protection algorithm and proving them correct is critical.
+3. *Denial of Service (DoS) features*: QUIC has a number of features designed to reduce the effects of DoS, both on individual connections, such as duplicate packet detection and complete packet protection, server resources, such as Retry, and the resources of bystanders, such as anti-reflection. It has yet to be shown whether or not these techniques achieve their desired goals.
+4. *Privacy*: many of QUIC’s new features account for and attempt to mitigate the linkability of packets to users across network paths and between connections. For example, voluntary connection migration requires endpoints to use new connection identifiers if possible as a way of preventing cross-path linkability. Also, as a means of improving endpoint privacy postures, among others, QUIC does not mandate endpoints provide any way for networks to measure per-connection Round Trip Time (RTT). The optional spin bit is the only signal made willingly available to the network. Currently, there is no strong analysis supporting the concrete privacy benefits these features provide to QUIC endpoints.
+5. *Application security*: while TLS exposes a socket-based send/recv interface, QUIC integrates most of the dynamic stream multiplexing interface from HTTP/2. Applications must target this new interface, leading to new protocols such as HTTP/3. The security implications of the new transport interface for legacy and new applications not well studied. For instance, it is unclear how an application can tell apart which parts of incoming messages have been protected with the 0-RTT or the 1-RTT secret. 
 
 Other remaining issues include stateless reset, accepting signals from the network for PMTUD and ECN, among others.
 
@@ -30,16 +31,31 @@ Papers already published, scheduled for publication, or intended for submission 
 
 Submissions should be non-anonymous, and consist of a main body and well-marked appendices. For papers that have already been published or accepted for publication already, submission should include a cover letter (at most 2 pages) commenting on what the workshop presentation would contain, appended with the accepted/published paper. For papers not already formally published, the main body should be at most 12 pages in length, in single-column format, with reasonable margins and fonts. If a work is currently in submission to a different venue, please note this in your submission. Such works will not be considered “double submissions”, and are welcome at this workshop. Appendices are unlimited in length; however, Workshop Technical Programme Committee members may base their decisions solely on the contents of the main bodies of submissions.
 
-Submission site: TBD!
+## Submission Website
+
+Please submit through [EasyChair](https://easychair.org/conferences/?conf=quips20)
 
 ## Important Dates
 
-TBD! Stay tuned for updates.
+All deadlines are 11:59pm anywhere on earth (UTC-12)
+
+- December 13, 2019: submission deadline
+- January 17, 2020: author notification
+- Februrary 7, 2020: camera-ready version deadline
+- February 23-26, 2020: NDSS Symposium
 
 ## Program Committee
 
-- Chair: Antoine Delignat-Lavaud, Microsoft Research
-- Chair: Christopher Wood, Apple, Inc.
+- Cas Cremers, CISPA Helmholtz Center for Information Security
+- Antoine Delignat-Lavaud, Microsoft Research (co-chair)
+- Felix Günther, University of California San Diego
+- Christian Huitema, Private Octopus
+- Subodh Iyengar, Facebook
+- Adam Langley, Google
+- Bryan Parno, Carnegie Mellon University
+- Adrian Perrig, ETH Zurich
+- Martin Thomson, Mozilla
+- Christopher Wood, Apple (co-chair)
 
 ## Location
 
