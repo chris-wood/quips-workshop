@@ -48,7 +48,7 @@ All deadlines are 11:59pm anywhere on earth (UTC-12)
 
 - Cas Cremers, CISPA Helmholtz Center for Information Security
 - Antoine Delignat-Lavaud, Microsoft Research (co-chair)
-- Felix Günther, University of California San Diego
+- Felix Günther, ETH Zurich
 - Christian Huitema, Private Octopus
 - Subodh Iyengar, Facebook
 - Adam Langley, Google
